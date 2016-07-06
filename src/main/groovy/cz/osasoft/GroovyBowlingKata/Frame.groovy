@@ -4,7 +4,7 @@ package cz.osasoft.GroovyBowlingKata
  * Created by OsaSoft on 06/07/16.
  */
 class Frame {
-    def rolls = new int[2]
+    def rolls = [0,0] as Integer[]
 
     def getFirstRoll(){
         rolls[0]
@@ -27,6 +27,6 @@ class Frame {
     }
 
     def getFrameRollSum(){
-
+        rolls.sum()
     }
 }
