@@ -20,6 +20,10 @@ class GameTest extends Specification {
         n.times{g.roll(pins)}
     }
 
+    def rollSpareTo(prevRoll){
+        g.roll(10 - prevRoll)
+    }
+
     def "Test gutter game"(){
         when:
             rollMany(20, 0)
@@ -37,7 +41,7 @@ class GameTest extends Specification {
     def "Test one spare"(){
         when:
             g.roll(5)
-            g.roll(5) //spare
+            rollSpareTo(5)
             g.roll(3)
             rollMany(17, 0)
         then:

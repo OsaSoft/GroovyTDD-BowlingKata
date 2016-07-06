@@ -13,16 +13,20 @@ class Game{
 
     def getScore(){
         def score = 0
-        def i = 0
+        def frame = 0
 
         10.times{
-            score += rolls[i] + rolls[i+1]
-            if(rolls[i] + rolls[i+1] == 10){ //spare
-                score += rolls[i+2]
+            score += rolls[frame] + rolls[frame+1]
+            if(isSpare(frame)){
+                score += rolls[frame+2]
             }
-            i += 2
+            frame += 2
         }
 
-        return score
+        score
+    }
+
+    private isSpare(frame){
+        rolls[frame] + rolls[frame+1] == 10
     }
 }
