@@ -9,6 +9,6 @@ class Game{
     }
 
     def getScore(){
-
+        0
     }
 }
