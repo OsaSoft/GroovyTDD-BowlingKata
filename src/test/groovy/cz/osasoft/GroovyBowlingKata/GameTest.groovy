@@ -59,4 +59,11 @@ class GameTest extends Specification {
         then:
             g.score == 24
     }
+
+    def "Test perfect game"(){
+        when:
+            rollMany(12, STRIKE)
+        then:
+            g.score == 300
+    }
 }
