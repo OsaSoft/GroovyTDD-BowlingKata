@@ -23,4 +23,13 @@ class GameTest extends Specification {
         then:
             g.score == 0
     }
+
+    def "Test all ones"(){
+        when:
+            20.times{
+                g.roll(1)
+            }
+        then:
+            g.score == 20
+    }
 }
