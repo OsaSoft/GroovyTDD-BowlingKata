@@ -33,4 +33,8 @@ class Frame {
     def isSpare(){
         frameRollSum == 10 && firstRoll != 10
     }
+
+    def isStrike(){
+        firstRoll == 10
+    }
 }
