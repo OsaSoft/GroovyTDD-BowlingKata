@@ -15,20 +15,20 @@ class GameTest extends Specification {
 
     def cleanup(){}
 
+    def rollMany(n, pins){
+        n.times{g.roll(pins)}
+    }
+
     def "Test gutter game"(){
         when:
-            20.times{
-                g.roll(0)
-            }
+            rollMany(20, 0)
         then:
             g.score == 0
     }
 
     def "Test all ones"(){
         when:
-            20.times{
-                g.roll(1)
-            }
+            rollMany(20, 1)
         then:
             g.score == 20
     }
