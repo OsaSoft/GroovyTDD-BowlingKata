@@ -1,6 +1,7 @@
 package cz.osasoft.GroovyBowlingKata
 
 import spock.lang.Ignore
+import spock.lang.IgnoreRest
 import spock.lang.Specification
 
 /**
@@ -54,14 +55,14 @@ class GameTest extends Specification {
 
     def "Test one strike"(){
         when:
-            g.with{
-                roll(STRIKE)
-                roll(3)
-                roll(4)
-            }
-            rollMany(16, 0)
+        g.with{
+            roll(STRIKE)
+            roll(3)
+            roll(4)
+        }
+        rollMany(16, 0)
         then:
-            g.score == 24
+        g.score == 24
     }
 
     def "Test perfect game"(){
@@ -74,6 +75,13 @@ class GameTest extends Specification {
     def "Test too many rolls"(){
         when:
             rollMany(21, 0)
+        then:
+            thrown IllegalStateException
+    }
+
+    def "Test too many strikes"(){
+        when:
+            rollMany(13, STRIKE)
         then:
             thrown IllegalStateException
     }

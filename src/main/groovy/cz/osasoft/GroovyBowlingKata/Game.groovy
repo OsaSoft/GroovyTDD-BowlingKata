@@ -4,40 +4,57 @@ package cz.osasoft.GroovyBowlingKata
  * Created by OsaSoft on 06/07/16.
  */
 class Game{
-    def rolls = [].withDefault {0}
+    def frames = [].withDefault {new Frame()}
+    def currentFrame = 0
     def currentRoll = 0
 
     def roll(pins){
-        if(currentRoll > 19) throw new IllegalStateException("Too many rolls")
+        if(isTooManyRolls()) throw new IllegalStateException("Too many rolls")
 
-        rolls[currentRoll++] = pins
+        if(currentRoll++ % 2 == 0){
+            frames[currentFrame].firstRoll = pins
+
+            if(frames[currentFrame].isStrike()){
+                currentFrame++
+                currentRoll++
+            }
+        } else {
+            frames[currentFrame].secondRoll = pins
+            currentFrame++
+        }
     }
 
     def getScore(){
         def score = 0
-        def frame = 0
 
-        10.times{
-            score += frameSum(frame) + bonus(frame)
-            frame += isStrike(frame) ? 1 : 2
+        (0..9).each{ frameIndex ->
+            def frame = frames[frameIndex]
+            score += frame.frameRollSum + bonus(frame, frameIndex)
         }
 
         score
     }
 
-    private bonus(frame){
-        isSpare(frame) || isStrike(frame) ? rolls[frame + 2] : 0
-    }
+    private bonus(frame, index){
+        if(index == 11) return 0
 
-    private isSpare(frame){
-        frameSum(frame) == 10
-    }
+        if(frame.isSpare()){
+            return frames[index+1].firstRoll
+        }
 
-    private isStrike(frame){
-        rolls[frame] == 10
-    }
+        if(frame.isStrike()){
+            if(frames[index+1].isStrike()){
+                return 10 + frames[index+2].frameRollSum
+            } else {
+                return frames[index+1].frameRollSum
+            }
+        }
 
-    private frameSum(frame){
-        rolls[frame] + rolls[frame+1]
+        return 0
+    }
+    
+    private isTooManyRolls(){
+        frames.size() == 12 || 
+                (frames.size() >= 10 && (currentRoll % 2 == 0) && !frames[currentFrame-1].isStrike())
     }
 }
