@@ -47,4 +47,14 @@ class GameTest extends Specification {
         then:
             g.score == 16
     }
+
+    def "Test one strike"(){
+        when:
+            g.roll(10) //strike
+            g.roll(3)
+            g.roll(4)
+            rollMany(16, 0)
+        then:
+            g.score == 24
+    }
 }
