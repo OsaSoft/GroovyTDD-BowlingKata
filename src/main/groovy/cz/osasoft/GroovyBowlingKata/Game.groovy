@@ -16,19 +16,27 @@ class Game{
         def frame = 0
 
         10.times{
-            score += rolls[frame] + rolls[frame+1]
+            score += frameSum(frame)
 
-            if(isSpare(frame) || rolls[frame] == 10){ //spare or strike
+            if(isSpare(frame) || isStrike(frame)){
                 score += rolls[frame + 2]
             }
 
-            frame += rolls[frame] == 10 ? 1 : 2 //strike
+            frame += isStrike(frame) ? 1 : 2
         }
 
         score
     }
 
-    private isSpare(int frame){
-        rolls[frame] + rolls[frame+1] == 10
+    private isSpare(frame){
+        frameSum(frame) == 10
+    }
+
+    private isStrike(frame){
+        rolls[frame] == 10
+    }
+
+    private frameSum(frame){
+        rolls[frame] + rolls[frame+1]
     }
 }

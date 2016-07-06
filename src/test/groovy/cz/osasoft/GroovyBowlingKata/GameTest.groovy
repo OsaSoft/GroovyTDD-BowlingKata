@@ -8,6 +8,8 @@ import spock.lang.Specification
  */
 
 class GameTest extends Specification {
+    static final STRIKE = 10
+
     Game g
 
     def setup(){
@@ -50,7 +52,7 @@ class GameTest extends Specification {
 
     def "Test one strike"(){
         when:
-            g.roll(10) //strike
+            g.roll(STRIKE)
             g.roll(3)
             g.roll(4)
             rollMany(16, 0)
