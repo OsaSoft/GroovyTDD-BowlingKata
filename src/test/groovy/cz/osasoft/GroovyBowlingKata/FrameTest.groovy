@@ -58,4 +58,18 @@ class FrameTest extends Specification {
             second << [8, 3, 3]
             sum << [9, 8, 10]
     }
+
+    @Unroll
+    def "Is it a spare frame?"(){
+        when:
+            f.firstRoll = first
+            f.secondRoll = second
+        then:
+            f.spare = spare
+
+        where:
+            first << [5, 3]
+            second << [5, 6]
+            spare << [true, false]
+    }
 }

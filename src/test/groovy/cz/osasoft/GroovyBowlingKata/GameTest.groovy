@@ -1,6 +1,7 @@
 package cz.osasoft.GroovyBowlingKata
 
 import spock.lang.Ignore
+import spock.lang.IgnoreRest
 import spock.lang.Specification
 
 /**
@@ -40,6 +41,7 @@ class GameTest extends Specification {
             g.score == 20
     }
 
+    @IgnoreRest
     def "Test one spare"(){
         when:
             g.with{
