@@ -17,16 +17,18 @@ class Game{
 
         10.times{
             score += rolls[frame] + rolls[frame+1]
-            if(isSpare(frame)){
-                score += rolls[frame+2]
+
+            if(isSpare(frame) || rolls[frame] == 10){ //spare or strike
+                score += rolls[frame + 2]
             }
-            frame += 2
+
+            frame += rolls[frame] == 10 ? 1 : 2 //strike
         }
 
         score
     }
 
-    private isSpare(frame){
+    private isSpare(int frame){
         rolls[frame] + rolls[frame+1] == 10
     }
 }
