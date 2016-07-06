@@ -65,7 +65,7 @@ class FrameTest extends Specification {
             f.firstRoll = first
             f.secondRoll = second
         then:
-            f.spare = spare
+            f.isSpare() == spare
 
         where:
             first << [5, 3]

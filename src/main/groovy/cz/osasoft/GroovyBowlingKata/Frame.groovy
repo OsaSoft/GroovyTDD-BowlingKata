@@ -29,4 +29,8 @@ class Frame {
     def getFrameRollSum(){
         rolls.sum()
     }
+
+    def isSpare(){
+        frameRollSum == 10 && firstRoll != 10
+    }
 }
