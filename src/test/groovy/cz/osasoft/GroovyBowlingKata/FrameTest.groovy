@@ -72,4 +72,11 @@ class FrameTest extends Specification {
             second << [5, 6]
             spare << [true, false]
     }
+
+    def "Is it a strike frame?"(){
+        when:
+            f.firstRoll = 10
+        then:
+            f.isStrike()
+    }
 }
