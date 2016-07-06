@@ -70,4 +70,11 @@ class GameTest extends Specification {
         then:
             g.score == 300
     }
+
+    def "Test too many rolls"(){
+        when:
+            rollMany(21, 0)
+        then:
+            thrown IllegalStateException
+    }
 }
