@@ -17,6 +17,9 @@ class Game{
 
         10.times{
             score += rolls[i] + rolls[i+1]
+            if(rolls[i] + rolls[i+1] == 10){ //spare
+                score += rolls[i+2]
+            }
             i += 2
         }
 
