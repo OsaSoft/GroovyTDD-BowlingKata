@@ -41,7 +41,7 @@ class FrameTest extends Specification {
             thrown IllegalStateException
 
         where:
-            first = [11, 0, 4, 8]
-            second = [0, 11, 7, 5]
+            first << [11, 0, 4, 8]
+            second << [0, 11, 7, 5]
     }
 }

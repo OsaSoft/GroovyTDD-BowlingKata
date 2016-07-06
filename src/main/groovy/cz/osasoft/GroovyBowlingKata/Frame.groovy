@@ -11,6 +11,8 @@ class Frame {
     }
 
     def setFirstRoll(pins){
+        if(pins > 10) throw new IllegalStateException()
+
         rolls[0] = pins
     }
 
@@ -19,7 +21,7 @@ class Frame {
     }
 
     def setSecondRoll(pins){
-        if(firstRoll == 10) throw new IllegalStateException()
+        if(firstRoll == 10 || firstRoll + pins > 10) throw new IllegalStateException()
 
         rolls[1] = pins
     }
