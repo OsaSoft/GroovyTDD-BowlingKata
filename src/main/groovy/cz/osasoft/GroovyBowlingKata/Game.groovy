@@ -8,6 +8,8 @@ class Game{
     def currentRoll = 0
 
     def roll(pins){
+        if(currentRoll > 19) throw new IllegalStateException("Too many rolls")
+
         rolls[currentRoll++] = pins
     }
 
