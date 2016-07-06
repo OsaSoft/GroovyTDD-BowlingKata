@@ -4,9 +4,14 @@ package cz.osasoft.GroovyBowlingKata
  * Created by OsaSoft on 06/07/16.
  */
 class Game{
-    def score = 0
+    def rolls = [].withDefault {0}
+    def currentRoll = 0
 
     def roll(pins){
-        score += pins
+        rolls[currentRoll++] = pins
+    }
+
+    def getScore(){
+        rolls.sum()
     }
 }
