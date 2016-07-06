@@ -32,4 +32,14 @@ class GameTest extends Specification {
         then:
             g.score == 20
     }
+
+    def "Test one spare"(){
+        when:
+            g.roll(5)
+            g.roll(5) //spare
+            g.roll(3)
+            rollMany(17, 0)
+        then:
+            g.score == 16
+    }
 }
