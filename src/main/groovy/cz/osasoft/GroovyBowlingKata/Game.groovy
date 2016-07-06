@@ -23,7 +23,7 @@ class Game{
         def score = 0
 
         frames.eachWithIndex{ frame, index ->
-            score += frameSum(frame)
+            score += frameSum(frame) + (frame.isSpare() ? frames[index+1].firstRoll : 0)
         }
 
 //        10.times{

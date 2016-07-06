@@ -41,7 +41,6 @@ class GameTest extends Specification {
             g.score == 20
     }
 
-    @IgnoreRest
     def "Test one spare"(){
         when:
             g.with{
