@@ -9,7 +9,7 @@ class Game{
     def currentRoll = 0
 
     def roll(pins){
-        if(frames.size() == 10 && (currentRoll % 2 == 0) && !frames[currentFrame-1].isStrike()){
+        if(frames.size() == 12 || (frames.size() >= 10 && (currentRoll % 2 == 0) && !frames[currentFrame-1].isStrike())){
             throw new IllegalStateException("Too many rolls")
         }
 
