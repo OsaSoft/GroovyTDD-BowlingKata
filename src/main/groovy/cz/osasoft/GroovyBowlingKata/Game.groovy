@@ -9,9 +9,7 @@ class Game{
     def currentRoll = 0
 
     def roll(pins){
-        if(frames.size() == 12 || (frames.size() >= 10 && (currentRoll % 2 == 0) && !frames[currentFrame-1].isStrike())){
-            throw new IllegalStateException("Too many rolls")
-        }
+        if(isTooManyRolls()) throw new IllegalStateException("Too many rolls")
 
         if(currentRoll++ % 2 == 0){
             frames[currentFrame].firstRoll = pins
@@ -29,9 +27,9 @@ class Game{
     def getScore(){
         def score = 0
 
-        (0..9).each{ index ->
-            def frame = frames[index]
-            score += frame.frameRollSum + bonus(frame, index)
+        (0..9).each{ frameIndex ->
+            def frame = frames[frameIndex]
+            score += frame.frameRollSum + bonus(frame, frameIndex)
         }
 
         score
@@ -53,5 +51,10 @@ class Game{
         }
 
         return 0
+    }
+    
+    private isTooManyRolls(){
+        frames.size() == 12 || 
+                (frames.size() >= 10 && (currentRoll % 2 == 0) && !frames[currentFrame-1].isStrike())
     }
 }
