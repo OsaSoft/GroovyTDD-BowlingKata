@@ -12,6 +12,14 @@ class Game{
     }
 
     def getScore(){
-        rolls.sum()
+        def score = 0
+        def i = 0
+
+        10.times{
+            score += rolls[i] + rolls[i+1]
+            i += 2
+        }
+
+        return score
     }
 }
