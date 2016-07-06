@@ -22,8 +22,8 @@ class GameTest extends Specification {
         n.times{g.roll(pins)}
     }
 
-    def rollSpareTo(prevRoll){
-        g.roll(10 - prevRoll)
+    def getSpareTo(prevRoll){
+        10 - prevRoll
     }
 
     def "Test gutter game"(){
@@ -42,9 +42,11 @@ class GameTest extends Specification {
 
     def "Test one spare"(){
         when:
-            g.roll(5)
-            rollSpareTo(5)
-            g.roll(3)
+            g.with{
+                roll(5)
+                roll(getSpareTo(5))
+                roll(3)
+            }
             rollMany(17, 0)
         then:
             g.score == 16
@@ -52,9 +54,11 @@ class GameTest extends Specification {
 
     def "Test one strike"(){
         when:
-            g.roll(STRIKE)
-            g.roll(3)
-            g.roll(4)
+            g.with{
+                roll(STRIKE)
+                roll(3)
+                roll(4)
+            }
             rollMany(16, 0)
         then:
             g.score == 24
