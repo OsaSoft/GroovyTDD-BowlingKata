@@ -22,4 +22,12 @@ class FrameTest extends Specification {
             f.firstRoll == 3
             f.secondRoll == 2
     }
+
+    def "Set rolls when first is strike"(){
+        when:
+            f.firstRoll = 10
+            f.secondRoll = 2
+        then:
+            thrown IllegalStateException
+    }
 }
