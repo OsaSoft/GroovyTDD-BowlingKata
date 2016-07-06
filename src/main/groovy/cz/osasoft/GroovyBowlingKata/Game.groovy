@@ -13,6 +13,11 @@ class Game{
 
         if(currentRoll++ % 2 == 0){
             frames[currentFrame].firstRoll = pins
+
+            if(frames[currentFrame].isStrike()){
+                currentFrame++
+                currentRoll++
+            }
         } else {
             frames[currentFrame].secondRoll = pins
             currentFrame++
@@ -23,7 +28,15 @@ class Game{
         def score = 0
 
         frames.eachWithIndex{ frame, index ->
-            score += frameSum(frame) + (frame.isSpare() ? frames[index+1].firstRoll : 0)
+            score += frameSum(frame)
+
+            if(frame.isSpare()){
+                score += frames[index+1].firstRoll
+            }
+
+            if(frame.isStrike()){
+                score += frames[index+1].frameRollSum
+            }
         }
 
 //        10.times{

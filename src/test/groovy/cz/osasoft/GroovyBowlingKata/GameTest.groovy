@@ -55,14 +55,14 @@ class GameTest extends Specification {
 
     def "Test one strike"(){
         when:
-            g.with{
-                roll(STRIKE)
-                roll(3)
-                roll(4)
-            }
-            rollMany(16, 0)
+        g.with{
+            roll(STRIKE)
+            roll(3)
+            roll(4)
+        }
+        rollMany(16, 0)
         then:
-            g.score == 24
+        g.score == 24
     }
 
     def "Test perfect game"(){
