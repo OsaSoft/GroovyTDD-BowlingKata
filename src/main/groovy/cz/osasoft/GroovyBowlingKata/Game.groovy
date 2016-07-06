@@ -28,38 +28,21 @@ class Game{
         def score = 0
 
         frames.eachWithIndex{ frame, index ->
-            score += frameSum(frame)
-
-            if(frame.isSpare()){
-                score += frames[index+1].firstRoll
-            }
-
-            if(frame.isStrike()){
-                score += frames[index+1].frameRollSum
-            }
+            score += frame.frameRollSum + bonus(frame, index)
         }
-
-//        10.times{
-//            score += frameSum(frame) + bonus(frame)
-//            frame += isStrike(frame) ? 1 : 2
-//        }
 
         score
     }
 
-    private bonus(frame){
-        isSpare(frame) || isStrike(frame) ? rolls[frame + 2] : 0
-    }
+    private bonus(frame, index){
+        if(frame.isSpare()){
+            return frames[index+1].firstRoll
+        }
 
-    private isSpare(frame){
-        frameSum(frame) == 10
-    }
+        if(frame.isStrike()){
+            return frames[index+1].frameRollSum
+        }
 
-    private isStrike(frame){
-        rolls[frame] == 10
-    }
-
-    private frameSum(frame){
-        frame.frameRollSum
+        return 0
     }
 }
