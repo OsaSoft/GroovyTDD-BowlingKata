@@ -27,6 +27,6 @@ class Frame {
     }
 
     def getFrameRollSum(){
-        
+
     }
 }

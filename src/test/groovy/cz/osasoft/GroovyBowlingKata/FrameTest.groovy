@@ -45,6 +45,7 @@ class FrameTest extends Specification {
             second << [0, 11, 7, 5]
     }
 
+    @Unroll
     def "Get frame sum"(){
         when:
             f.firstRoll = first
