@@ -25,4 +25,8 @@ class Frame {
 
         rolls[1] = pins
     }
+
+    def getFrameRollSum(){
+        
+    }
 }

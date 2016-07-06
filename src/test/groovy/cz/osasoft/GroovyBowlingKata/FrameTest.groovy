@@ -44,4 +44,17 @@ class FrameTest extends Specification {
             first << [11, 0, 4, 8]
             second << [0, 11, 7, 5]
     }
+
+    def "Get frame sum"(){
+        when:
+            f.firstRoll = first
+            f.secondRoll = second
+        then:
+            f.frameRollSum == sum
+
+        where:
+            first << [1, 5, 7]
+            second << [8, 3, 3]
+            sum << [9, 8, 10]
+    }
 }
