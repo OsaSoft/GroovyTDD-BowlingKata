@@ -77,4 +77,11 @@ class GameTest extends Specification {
         then:
             thrown IllegalStateException
     }
+
+    def "Test too many strikes"(){
+        when:
+            rollMany(13, STRIKE)
+        then:
+            thrown IllegalStateException
+    }
 }
