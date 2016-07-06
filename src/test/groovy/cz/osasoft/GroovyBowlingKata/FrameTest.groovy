@@ -1,6 +1,7 @@
 package cz.osasoft.GroovyBowlingKata
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * Created by oscar on 06/07/16.
@@ -29,5 +30,18 @@ class FrameTest extends Specification {
             f.secondRoll = 2
         then:
             thrown IllegalStateException
+    }
+
+    @Unroll
+    def "Set rolls with more pins than bowling has"(){
+        when:
+            f.firstRoll = first
+            f.secondRoll = second
+        then:
+            thrown IllegalStateException
+
+        where:
+            first = [11, 0, 4, 8]
+            second = [0, 11, 7, 5]
     }
 }
