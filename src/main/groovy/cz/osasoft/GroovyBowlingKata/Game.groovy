@@ -9,7 +9,7 @@ class Game{
     def currentRoll = 0
 
     def roll(pins){
-        if(isTooManyRolls()) throw new IllegalStateException("Too many rolls")
+        if(isTooManyRolls()) throw new IllegalStateException("Too many rolls (f$currentFrame r$currentRoll)")
 
         if(currentRoll++ % 2 == 0){
             frames[currentFrame].firstRoll = pins
@@ -55,6 +55,7 @@ class Game{
     
     private isTooManyRolls(){
         frames.size() == 12 || 
-                (frames.size() >= 10 && (currentRoll % 2 == 0) && !frames[currentFrame-1].isStrike())
+                (frames.size() >= 10 && (currentRoll % 2 == 0) && !frames[currentFrame-1].isStrike() &&
+                !frames[currentFrame-1].isSpare())
     }
 }
