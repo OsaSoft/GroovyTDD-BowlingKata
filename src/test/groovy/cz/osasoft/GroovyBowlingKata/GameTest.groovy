@@ -96,4 +96,15 @@ class GameTest extends Specification {
         then:
             g.score == 279
     }
+
+    def "Test 10th frame strike and next spare"(){
+        when:
+            rollMany(10,STRIKE)
+            g.with{
+                roll(2)
+                roll(getSpareTo(2))
+            }
+        then:
+            g.score == 282
+    }
 }
