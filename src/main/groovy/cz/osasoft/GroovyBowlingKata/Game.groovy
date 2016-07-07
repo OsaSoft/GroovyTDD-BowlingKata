@@ -44,7 +44,7 @@ class Game{
 
         if(frame.isStrike()){
             if(frames[index+1].isStrike()){
-                return 10 + frames[index+2].frameRollSum
+                return 10 + frames[index+2].firstRoll
             } else {
                 return frames[index+1].frameRollSum
             }

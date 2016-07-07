@@ -85,4 +85,15 @@ class GameTest extends Specification {
         then:
             thrown IllegalStateException
     }
+
+    def "Test 10th frame strike and next roll not"(){
+        when:
+            rollMany(10, STRIKE)
+            g.with{
+                roll(2)
+                roll(5)
+            }
+        then:
+            g.score == 279
+    }
 }
