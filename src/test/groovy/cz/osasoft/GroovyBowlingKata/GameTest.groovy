@@ -3,6 +3,7 @@ package cz.osasoft.GroovyBowlingKata
 import spock.lang.Ignore
 import spock.lang.IgnoreRest
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * Created by OsaSoft on 06/07/16.
@@ -99,12 +100,29 @@ class GameTest extends Specification {
 
     def "Test 10th frame strike and next spare"(){
         when:
-            rollMany(10,STRIKE)
+            rollMany(10, STRIKE)
             g.with{
                 roll(2)
                 roll(getSpareTo(2))
             }
         then:
             g.score == 282
+    }
+
+    @Unroll
+    def "Test 10th frame spare and next normal or strike"(){
+        when:
+            rollMany(9, STRIKE)
+            g.with{
+                roll(2)
+                roll(getSpareTo(2))
+                roll(finalRoll)
+            }
+        then:
+            g.score == score
+
+        where:
+            finalRoll << [3, STRIKE]
+            score << [265, 272]
     }
 }
